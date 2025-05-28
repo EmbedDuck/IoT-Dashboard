@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motor and Driver Table</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1 style="text-align:center;">Motor & Driver Table</h1>
+
+  <table id="itemTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Items</th>
+        <th>Photo</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>
+          <select class="item-select">
+            <option value="">--Select Motor--</option>
+            <option value="motor1">Motor 1</option>
+            <option value="motor2">Motor 2</option>
+            <option value="motor3">Motor 3</option>
+          </select>
+        </td>
+        <td><img class="item-photo" src="" alt=""></td>
+        <td>
+          <button class="qty-down">-</button>
+          <input type="number" class="qty-input" value="0" min="0">
+          <button class="qty-up">+</button>
+        </td>
+        <td class="item-price">$0</td>
+        <td class="item-total">$0</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>
+          <select class="item-select">
+            <option value="">--Select Driver--</option>
+            <option value="driver1">Driver 1</option>
+            <option value="driver2">Driver 2</option>
+            <option value="driver3">Driver 3</option>
+          </select>
+        </td>
+        <td><img class="item-photo" src="" alt=""></td>
+        <td>
+          <button class="qty-down">-</button>
+          <input type="number" class="qty-input" value="0" min="0">
+          <button class="qty-up">+</button>
+        </td>
+        <td class="item-price">$0</td>
+        <td class="item-total">$0</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5">Grand Total</td>
+        <td id="grandTotal">$0</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <script>
+    const items = {
+      // Motors
+      motor1: { price: 50, image: 'images/motor1.jpg' },
+      motor2: { price: 70, image: 'images/motor2.jpg' },
+      motor3: { price: 90, image: 'images/motor3.jpg' },
+      // Drivers
+      driver1: { price: 30, image: 'images/driver1.jpg' },
+      driver2: { price: 45, image: 'images/driver2.jpg' },
+      driver3: { price: 60, image: 'images/driver3.jpg' }
+    };
+
+    const table = document.getElementById('itemTable');
+    const grandTotalCell = document.getElementById('grandTotal');
+
+    // Initialize each row
+    document.querySelectorAll('tbody tr').forEach(row => {
+      const select = row.querySelector('.item-select');
+      const photo = row.querySelector('.item-photo');
+      const priceCell = row.querySelector('.item-price');
+      const totalCell = row.querySelector('.item-total');
+      const qtyInput = row.querySelector('.qty-input');
+      const upBtn = row.querySelector('.qty-up');
+      const downBtn = row.querySelector('.qty-down');
+
+      let currentPrice = 0;
+
+      select.addEventListener('change', () => {
+        const selected = select.value;
+        if (items[selected]) {
+          currentPrice = items[selected].price;
+          photo.src = items[selected].image;
+          priceCell.textContent = `$${currentPrice}`;
+        } else {
+          currentPrice = 0;
+          photo.src = '';
+          priceCell.textContent = `$0`;
+        }
+        updateTotal();
+      });
+
+      upBtn.addEventListener('click', () => {
+        qtyInput.value = parseInt(qtyInput.value) + 1;
+        updateTotal();
+      });
+
+      downBtn.addEventListener('click', () => {
+        if (qtyInput.value > 0) {
+          qtyInput.value = parseInt(qtyInput.value) - 1;
+          updateTotal();
+        }
+      });
+
+      qtyInput.addEventListener('input', updateTotal);
+
+      function updateTotal() {
+        const qty = parseInt(qtyInput.value) || 0;
+        const total = qty * currentPrice;
+        totalCell.textContent = `$${total}`;
+        updateGrandTotal();
+      }
+    });
+
+    function updateGrandTotal() {
+      let grandTotal = 0;
+      document.querySelectorAll('.item-total').forEach(cell => {
+        const value = parseFloat(cell.textContent.replace('$', '')) || 0;
+        grandTotal += value;
+      });
+      grandTotalCell.textContent = `$${grandTotal}`;
+    }
+  </script>
+
+</body>
+</html>
