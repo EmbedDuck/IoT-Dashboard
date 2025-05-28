@@ -1,0 +1,29 @@
+
+    table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid black;
+      padding: 10px;
+      text-align: center;
+    }
+    img {
+      max-width: 100px;
+      height: auto;
+    }
+    input[type="number"] {
+      width: 50px;
+      text-align: center;
+    }
+    select {
+      padding: 5px;
+    }
+    button {
+      padding: 2px 5px;
+    }
+    tfoot td {
+      font-weight: bold;
+    }
+  
