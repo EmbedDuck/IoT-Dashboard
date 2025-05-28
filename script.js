@@ -1,7 +1,7 @@
 
     const items = {
       // Motors
-      motor1: { price: 50, image: 'motor1.jpg' },
+      motor1: { price: 50, image: 'https://github.com/EmbedDuck/IoT-Dashboard/blob/main/motor1.jpg' },
       motor2: { price: 70, image: 'motor2.jpg' },
       motor3: { price: 90, image: 'motor3.jpg' },
       // Drivers
