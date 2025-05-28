@@ -1,13 +1,13 @@
 
     const items = {
       // Motors
-      motor1: { price: 50, image: 'images/motor1.jpg' },
-      motor2: { price: 70, image: 'images/motor2.jpg' },
-      motor3: { price: 90, image: 'images/motor3.jpg' },
+      motor1: { price: 50, image: 'motor1.jpg' },
+      motor2: { price: 70, image: 'motor2.jpg' },
+      motor3: { price: 90, image: 'motor3.jpg' },
       // Drivers
-      driver1: { price: 30, image: 'images/driver1.jpg' },
-      driver2: { price: 45, image: 'images/driver2.jpg' },
-      driver3: { price: 60, image: 'images/driver3.jpg' }
+      driver1: { price: 30, image: 'driver1.jpg' },
+      driver2: { price: 45, image: 'driver2.jpg' },
+      driver3: { price: 60, image: 'driver3.jpg' }
     };
 
     const table = document.getElementById('itemTable');
